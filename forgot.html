@@ -1,0 +1,178 @@
+<!-- forgot - Plate2Purpose Password Reset -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Plate2Purpose - Forgot Password</title>
+    <link rel="icon" type="image/svg+xml" href="images/p2p-mark.svg" />
+    <link rel="icon" href="images/recycle-sign.png" type="image/png" />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Reset your Plate2Purpose account password." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/p2p.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&display=swap" rel="stylesheet" />
+</head>
+
+  <body class="p2p">
+    <!-- Preloader -->
+    <div class="p2p-preloader">
+      <div class="ring"></div>
+      <div class="word">Plate2Purpose</div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg p2p-nav p2p-nav--light">
+      <div class="container">
+        <a href="index" class="navbar-brand">
+          <span class="p2p-logo-mark" style="background:none; box-shadow:none; width:40px; height:40px;">
+            <img src="images/p2p-mark.svg" width="40" height="40" alt="" style="display:block;" />
+          </span>
+          Plate2Purpose<sup style="font-size:10px; opacity:.5; margin-left:2px;">™</sup>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+              <a href="login" class="p2p-btn p2p-btn--sm">Sign in <i class="bi bi-arrow-right"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Forgot Password Section -->
+    <section class="p2p-section" id="section_4" style="min-height:100vh; display:flex; align-items:center; padding-top:140px;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-8 col-12">
+            <div class="text-center mb-4" data-reveal="down">
+              <span class="p2p-eyebrow">Account recovery</span>
+            </div>
+            <div class="p2p-form-card" data-reveal="up">
+              <div class="text-center mb-4">
+                <div class="p2p-icon-chip mb-3" style="margin-bottom:14px;"><i class="bi bi-shield-lock"></i></div>
+                <h2 class="mb-2" style="font-size:28px;">Forgot password</h2>
+                <p class="mb-0" style="color:var(--p2p-text-soft); font-size:14.5px;">
+                  We'll email you a secure link to reset it.
+                </p>
+              </div>
+
+              <!-- Step 1: Ask Email -->
+              <div id="step-email">
+                <label for="email" class="form-label">Enter your Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control mb-3"
+                  placeholder="your@email.com"
+                  required
+                />
+                <button onclick="sendResetEmail()" class="p2p-btn w-100">
+                  Send Reset Link <i class="bi bi-envelope-arrow-up"></i>
+                </button>
+              </div>
+
+              <!-- Step 2: Reset Password (when user clicks email link) -->
+              <div id="step-password" style="display: none">
+                <label for="new-password" class="form-label"
+                  >New Password</label
+                >
+                <input
+                  type="password"
+                  id="new-password"
+                  class="form-control mb-3"
+                  placeholder="Enter new password"
+                  required
+                />
+                <button onclick="changePassword()" class="p2p-btn w-100">
+                  Change Password <i class="bi bi-check2-circle"></i>
+                </button>
+              </div>
+
+              <div class="text-center mt-4" style="font-size:14px;">
+                <a href="login" style="color:var(--p2p-green); font-weight:500; text-decoration:none;">
+                  <i class="bi bi-arrow-left"></i> Back to sign in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating AI assistant -->
+    <a href="chatbot" class="p2p-ai-fab" aria-label="Open AI assistant">
+      <span class="orb"><i class="bi bi-chat-dots"></i></span>
+      Kitchen assistant
+    </a>
+
+    <!-- Supabase Auth -->
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script>
+      const client = supabase.createClient(
+        "https://pljmachiuahkrkiddehc.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBsam1hY2hpdWFoa3JraWRkZWhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTExMTAyNDEsImV4cCI6MjA2NjY4NjI0MX0.ke4EYw5lGX5DHrgu1GCDxRUbMYU-M6KzbLZVeesoVm8"
+      );
+
+      // Step 1: Send Reset Email
+      async function sendResetEmail() {
+        const email = document.getElementById("email").value.trim();
+        if (!email) return alert("❌ Please enter your email");
+
+        const { error } = await client.auth.resetPasswordForEmail(email, {
+          redirectTo: "https://dhurgesh1.github.io/plate2purposef/forgot", // user returns here after clicking email link
+        });
+
+        if (error) {
+          alert("❌ " + error.message);
+        } else {
+          alert("✅ Password reset email sent! Check your inbox.");
+        }
+      }
+
+      // Step 2: Detect recovery mode (when user clicks link from email)
+      client.auth.onAuthStateChange((event, session) => {
+        if (event === "PASSWORD_RECOVERY") {
+          document.getElementById("step-email").style.display = "none";
+          document.getElementById("step-password").style.display = "block";
+        }
+      });
+
+      // Step 3: Change Password
+      async function changePassword() {
+        const newPass = document.getElementById("new-password").value.trim();
+        if (newPass.length < 6)
+          return alert("❌ Password must be at least 6 characters");
+
+        const { error } = await client.auth.updateUser({ password: newPass });
+
+        if (error) {
+          alert("❌ " + error.message);
+        } else {
+          window.location.href = "paschan"; // redirect to confirmation page
+        }
+      }
+    </script>
+
+    <!-- Core JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/p2p.js"></script>
+  </body>
+</html>
